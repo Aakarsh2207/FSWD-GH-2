@@ -41,7 +41,7 @@ const htmlTaskContent = ({id, title, description, type, url}) =>
                 <button type="button" class="btn btn-outline-primary mr-2" name=${id}>     <!-- Edit Button1 -->     <!-- Primary is BLUE -->
                     <i class="fa-solid fa-pencil" name=${id}></i>
                 </button>
-                 <button type="button" class="btn btn-outline-danger mr-2" name=${id} onclick="deleteTask.apply(this, arguments)">     <!-- Edit Button2 -->     <!-- Danger is RED -->
+                 <button type="button" class="btn btn-outline-danger mr-2" name=${id} onclick="deleteTask.apply(this, arguments)">     <!-- Edit Button2 -->     <!-- Danger is RED --><!-- "openTask" alone will not work, We have to write this line full JS130 -->
                     <i class="fa-solid fa-trash" name=${id}></i>
                 </button>
             </div>     <!-- This HTML code card is Dynamic right now, Copy same in HTML in last of Body Tag to view this HTML code Function in Static Mode -->
@@ -57,7 +57,7 @@ const htmlTaskContent = ({id, title, description, type, url}) =>
                 </div>
             </div>
             <div class="card-footer">
-                <button type="button" class="btn btn-outline-primary float-right" data-bs-toggle="modal" data-bs-target="#showTask" id=${id} onclick="openTask.apply(this, arguments)">Open Task</button>
+                <button type="button" class="btn btn-outline-primary float-right" data-bs-toggle="modal" data-bs-target="#showTask" id=${id} onclick="openTask.apply(this, arguments)">Open Task</button>     <!-- On Click, GOTO openTask...   (JS121) -->     <!-- "openTask" alone will not work, We have to write this line full (JS120) -->
             </div>
         </div>
     </div>
@@ -85,7 +85,7 @@ const updateLocalStorage = () => {
     }))
 }
 
-const loadInitialData = () => {
+const loadInitialData = () => {     //HTML28
     const localStorageCopy = JSON.parse(localStorage.task);
 
     if(localStorageCopy) state.taskList = localStorageCopy.tasks;       //IF localStorageCopy has some data, THEN state.tasklist...
@@ -104,6 +104,66 @@ const handleSubmit = (event) => {
         description: document.getElementById('taskDescription').value,
         type: document.getElementById('tags').value,
     };
-    
+
+    if(input.title == "" || input.description == "" || input.type=="" ){
+        return alert("Please first fill out all the mandatory fields")
+    }
+
     taskContents.insertAdjacentHTML("beforeend", htmlTaskContent({...input, id}))
+
+    state.taskList.push({...input, id});        //When we click on Save button, we should have 1 Card added/created
+    updateLocalStorage();
+}
+
+
+
+const openTask = (e) => {       //JS60
+    if(!e) e = window.event;
+
+    const getTask = state.taskList.find(({id}) => id == e.target.id);       //e=event
+    taskModal.innerHTML = htmlModalContent(getTask);        //"htmlModalContent" has its partimeters present in an object called "getTask"
+    // console.log("opentask activated");
+}
+
+
+
+const deleteTask = (e) => {
+    if(!e) e = window.event;
+
+    const targetId = e.target.getAttribute("name");
+    const type = e.target.tagName;
+    // console.log(targetId);
+    // console.log(type);
+
+    const removeTask = state.taskList.filter(({id})=> id!== targetId)
+    // console.log(removeTask)
+    state.taskList = removeTask;
+
+    updateLocalStorage()
+
+    if(type === "BUTTON"){
+        // console.log(e.target.parentNode.parentNode.parentNode)   //3parents
+        return e.target.parentNode.parentNode.parentNode.parentNode.removeChild(
+            e.target.parentNode.parentNode.parentNode       //4parents
+        )
+    }
+  return e.target.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(       //5parents
+            e.target.parentNode.parentNode.parentNode.parentNode        //4parents
+  )
+}    
+
+
+const searchTask = (e) => {     //e=event       //HTML212
+       if(!e) e = window.event;
+
+       while(taskContents.firstChild){
+        taskContents.removeChild(taskContents.firstChild)
+       }
+
+       const resultData = state.taskList.filter(({title})=> title.includes(e.target.value))
+       console.log(resultData);
+
+       resultData.map((cardData) => {
+         taskContents.insertAdjacentHTML("beforeend", htmlTaskContent(cardData))
+       })
 }
