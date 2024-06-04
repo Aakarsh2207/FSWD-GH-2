@@ -26,7 +26,19 @@
     />
   </head>
   <body>
-         <!-- Modal -->
+    <!-- Mobile Add New Item -->     <!-- For Mobile Orientation -->
+    <div class="add__new__btn__mobile__only">
+      <button
+        class="btn btn-primary d-flex align-items-center gap-2"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#addNewModal"
+      >
+        <i class="fa-solid fa-plus"></i>Add New Item
+      </button>
+    </div>
+
+         <!-- Modal --><!-- Add New Item Modal -->
     <div
       class="modal fade"
       id="addNewModal"
@@ -45,7 +57,58 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">...</div>
+          <div class="modal-body">
+            <form>     <!-- Add New Item form details sections -->
+              <div class="mb-3">     <!-- Entry Field1 -->
+                <label for="imageUrl" class="form-label">Image URL</label>
+                <input
+                  type="url"
+                  class="form-control"
+                  id="imageUrl"
+                  aria-describedby="imageOpt"
+                  placeholder="https://taskyAa.com/"
+                />     <!-- Expecting URL(type) from user -->
+                <div id="imageOpt" class="form-text">
+                  Its an optional field for us!
+                </div>
+              </div>
+
+              <div class="mb-3">     <!-- Entry Field2 -->
+                <label for="taskTitle" class="form-label">Task Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="taskTitle"
+                  placeholder="Please enter the title here..."
+                  required
+                />     <!-- ID can ba anything written but it should be logical -->
+              </div>
+
+              <div class="mb-3">     <!-- Entry Field3 -->
+                <label for="tags" class="form-label">Task Type</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="tags"
+                  placeholder="Please enter the type here..."
+                  required
+                />     <!-- Required, not Optional -->
+              </div>
+
+              <div class="mb-3">     <!-- Entry Field4 -->
+                <label for="taskDescription" class="form-label"
+                  >Task Description</label
+                >
+                <textarea
+                  type="text"
+                  class="form-control"
+                  id="taskDescription"
+                  placeholder="Please enter the description here..."
+                  required
+                ></textarea>     <!-- Input Tag changed to Text Area TAG to get Text Field Area -->
+              </div>
+            </form>
+          </div>
           <div class="modal-footer">
             <button
               type="button"
@@ -55,6 +118,48 @@
               Close
             </button>
             <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Show Task Modal -->     <!-- Modal for when Task is made to View it later -->
+
+    <!-- <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#showTask"
+    >
+      Launch demo modal
+    </button> -->     <!-- We want button we a Task is created -->
+    <div
+      class="modal fade"
+      id="showTask"
+      tabindex="-1"
+      aria-labelledby="showTaskLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">     <!-- Modal lg for Large View -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="showTaskLabel">Task Details</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body task__modal__body"></div>     <!-- Second Model as Dynamic Functionality -->     <!-- #We have to build Dynamic Fuctionality here -->
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
@@ -115,7 +220,7 @@
         </section>     <!-- Section Tag for Search Bar & Search Icon with Shadows -->
   
         <section class="mt-4">     <!-- Section2 -->
-          <div class="row task__contents"></div>     <!-- We will use Custom JS -->
+          <div class="row task__contents"></div>     <!-- We will use Custom JS -->     <!-- #We have to build Dynamic Fuctionality here -->
         </section>
       </div>
 
