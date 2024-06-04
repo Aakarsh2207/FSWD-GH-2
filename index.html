@@ -81,7 +81,7 @@
                   id="taskTitle"
                   placeholder="Please enter the title here..."
                   required
-                />     <!-- ID can ba anything written but it should be logical -->
+                />     <!-- ID can ba anything written but it should be logical -->     <!-- JS103 -->
               </div>
 
               <div class="mb-3">     <!-- Entry Field3 -->
@@ -123,16 +123,9 @@
       </div>
     </div>
 
-    <!--Show Task Modal -->     <!-- Modal for when Task is made to View it later -->
+    <!--Show Task Modal -->     <!-- Modal for when Task is made to View it later -->                                                 <!-- <button      type="button"      class="btn btn-primary"      data-bs-toggle="modal"      data-bs-target="#showTask"    >     Launch demo modal     </button> -->     
 
-    <!-- <button
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#showTask"
-    >
-      Launch demo modal
-    </button> -->     <!-- We want button we a Task is created -->
+    <!--  Launch demo modal--><!-- We want button we a Task is created -->
     <div
       class="modal fade"
       id="showTask"
@@ -233,5 +226,32 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+
+    <!-- <div class="col-md-6 col-lg-4 mt-3" id=${id} key=${id}>
+      <div class="card shadow-sm task__card">
+          <div class="card-header d-flex justify-content-end task__card__header gap-2">
+              <button type="button" class="btn btn-outline-primary mr-2" name=${id}>     
+                  <i class="fa-solid fa-pencil" name=${id}></i>
+              </button>
+               <button type="button" class="btn btn-outline-danger mr-2" name=${id} onclick="deleteTask.apply(this, arguments)">
+                  <i class="fa-solid fa-trash" name=${id}></i>
+              </button>
+          </div>     
+          <div class="card-body">
+              ${
+                  url ? `<img src=${url} alt='card image top' class="card-img-top md-3 rounded"/>` :
+                      `<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScujirQqIFjN5GuM1565_-DIX6OyU_96HzNBl_BAX8GL0JzMs8&s" alt='card image top' class="card-img-top md-3 rounded"/>`
+              }
+              <h4 class="task__card__title card-title">${title}</h4>
+              <p class="description card-text">${description}</p>
+              <div class="tags text-white d-flex flex-wrap">
+                  <span class="badge text-bg-primary m-1">${type}</span>
+              </div>
+          </div>
+          <div class="card-footer">
+              <button type="button" class="btn btn-outline-primary float-right" data-bs-toggle="modal" data-bs-target="#showTask" id=${id} onclick="openTask.apply(this, arguments)">Open Task</button>
+          </div>
+      </div>
+    </div> -->
   </body>
 </html>
