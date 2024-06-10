@@ -23,7 +23,7 @@
                                         html
             head                                                                            body
 
-meta meta title link script
+    meta meta title link                                                                        script
 
 ## Stack for the Application:
 
@@ -32,3 +32,9 @@ meta meta title link script
     >> JS
     >> Bootstrap
     >> Git & Github
+
+## Links
+
+    >> https://getbootstrap.com/docs/5.3/components/buttons/
+    >> https://fontawesome.com/search?q=plus&o=r
+    >> https://cdnjs.com/libraries/font-awesome
